@@ -8,9 +8,8 @@
 import React, { useState, useEffect } from 'react';
 import { CssBaseline } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
 import { Navbar, Products, Cart, Checkout } from './components';
-
+//import our product source
 const App = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [products, setProducts] = useState([]);
@@ -18,7 +17,7 @@ const App = () => {
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
 
-
+// after each "await" we need to add where our product source
   const fetchProducts = async () => {
     const { data } = await products.list();
 
@@ -26,11 +25,11 @@ const App = () => {
   };
 
   const fetchCart = async () => {
-    setCart(await cart.cart.retrieve());
+    setCart(await cart.retrieve());
   };
 
   const handleAddToCart = async (productId, quantity) => {
-    const item = await cart.cart.add(productId, quantity);
+    const item = await cart.add(productId, quantity);
 
     setCart(item.cart);
   };
@@ -70,11 +69,11 @@ const App = () => {
       setErrorMessage(error.data.error.message);
     }
   };
-
-  // useEffect(() => {
-  //   fetchProducts();
-  //   fetchCart();
-  // }, []);
+// end of "await" adding
+  useEffect(() => {
+    fetchProducts();
+    fetchCart();
+  }, []);
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
