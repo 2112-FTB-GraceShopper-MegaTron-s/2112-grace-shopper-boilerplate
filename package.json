@@ -24,6 +24,10 @@
     "@stripe/stripe-js": "^1.29.0",
     "axios": "^0.19.2",
     "bcrypt": "^5.0.1",
+<<<<<<< HEAD
+=======
+    "commerce": "^0.0.0",
+>>>>>>> a4563d8af345c837da3b281b64a7ae10849ece4b
     "concurrently": "^7.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
@@ -40,10 +44,6 @@
     "react-stripe-elements": "^6.1.2",
     "semantic-ui-react": "^2.1.2"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.4",
-    "supertest": "^6.2.1"
-  },
   "proxy": "http://localhost:4000",
   "browserslist": {
     "production": [
@@ -56,5 +56,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.1",
+    "nodemon": "^2.0.16"
   }
 }

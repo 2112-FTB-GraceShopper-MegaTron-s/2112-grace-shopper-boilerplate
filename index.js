@@ -1,4 +1,5 @@
 // This is the Web Server
+require("dotenv").config;
 const express = require('express');
 const server = express();
 
@@ -30,7 +31,11 @@ server.use((req, res, next) => {
 const { client } = require('./db');
 
 // connect to the server
+<<<<<<< HEAD
 const PORT = process.env.PORT || 5000;
+=======
+const PORT = process.env.PORT || 7000;
+>>>>>>> a4563d8af345c837da3b281b64a7ae10849ece4b
 
 // define a server handle to close open tcp connection after unit tests have run
 const handle = server.listen(PORT, async () => {
