@@ -17,6 +17,14 @@ export async function getUsers() {
   }
 }
 
+export async function loginUser({username, password}) {
+  try{
+    const response = await axios.post('/api/users/login',{username, password});
+
+  }catch(err){
+  console.error(err)
+}
+};
 
 export async function getAPIHealth() {
   try {
