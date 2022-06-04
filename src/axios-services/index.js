@@ -17,7 +17,15 @@ import axios from 'axios';
     }
   }
 */
-
+export async function getProducts() {
+  try {
+    const { data:  products  } = await axios.get('/api/product')
+    console.log(products)
+    return products;
+  } catch(err) {
+    console.error(err)
+  }
+}
 export async function getAPIHealth() {
   try {
     const { data } = await axios.get('/api/health');
