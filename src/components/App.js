@@ -23,16 +23,7 @@ const App = () => {
     // invoke it immediately after its declaration, inside the useEffect callback
     getAPIStatus();
   }, []);
-useEffect (()=> {
 
-  const getAllProducts = async () =>{
-    const products = await getProducts();
-    setProducts(products)
-    console.log(products)
-
-  };
-  getAllProducts();
-},[])
   return (
     <div className="app-container">
       <h1>Hello, World!</h1>

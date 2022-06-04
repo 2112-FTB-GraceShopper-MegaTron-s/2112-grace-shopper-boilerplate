@@ -15,12 +15,14 @@ const Products = () => {
       },[])
 
     return(
+
         <> {products.map(product => <div> 
             <p>{product.name}</p>
             <p>{product.description}</p> 
             <p>${product.price}</p>
             <p>{product.pictures}</p>
             </div>)}</>
+
     
     )};
 
