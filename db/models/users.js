@@ -2,7 +2,7 @@
 const client = require("../client");
 const bcrypt = require("bcrypt")
 
-async function createUser({ username, address, email, city, state, zip, password }) {
+async function createUser({ username, address, email, city, state, zip, admin, password }) {
   const SALT_COUNT = 10;
   const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
   try {
@@ -10,10 +10,10 @@ async function createUser({ username, address, email, city, state, zip, password
       rows: [user]
     } = await client.query(
       `
-        INSERT INTO users (username, address, email, city, state, zip, password)
-        VALUES($1, $2, $3, $4, $5, $6, $7);
+        INSERT INTO users (username, address, email, city, state, zip, admin, password)
+        VALUES($1, $2, $3, $4, $5, $6, $7, $8);
       `,
-      [username, address, email, city, state, zip, hashedPassword]
+      [username, address, email, city, state, zip,admin, hashedPassword]
     );
     delete password;
     
@@ -47,7 +47,7 @@ async function getUser({ username, password }) {
 async function getUserById(id) {
   try {
     const { rows: [ user ] } = await client.query(`
-      SELECT id, username, password
+      SELECT id, username, admin
       FROM users
       WHERE id=$1
     `, [id]);
@@ -78,13 +78,25 @@ async function getUserByUsername(username){
       throw error;
     }
 }
-
+async function isUserAdmin(userId){
+  try{
+    const {rows: [admin]} = await client.query(`
+      SELECT admin
+      FROM users
+      WHERE id =$1;
+    `, [userId])
+    return admin;
+  }catch(error){
+    throw error
+  }
+}
 
 module.exports = {
   createUser,
   getUser,
   getUserById,
   getUserByUsername,
+  isUserAdmin
   
   
 };

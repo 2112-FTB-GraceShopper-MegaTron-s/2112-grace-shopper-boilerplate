@@ -21,6 +21,7 @@ cartRouter.get('/', async (req, res, next) => {
 
 cartRouter.post('/', async (req, res, next) => {
     try{
+        console.log (req.body)
         const newCart = await createCart(req.body);
         res.send(newCart);
     } catch (error){

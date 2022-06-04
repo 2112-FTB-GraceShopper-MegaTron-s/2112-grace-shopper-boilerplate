@@ -1,7 +1,8 @@
 const express = require('express');
 const productRouter = express.Router();
 const { requireUser } = require('./utils');
-const { createProducts, getProductById, getAllProducts } = require('../db/models/product');
+const { createProducts, getProductById, getAllProducts, deleteProduct } = require('../db/models/product');
+const { isUserAdmin } = require('../db');
 
 
 
@@ -26,31 +27,30 @@ productRouter.post('/', async (req, res, next) => {
     }
 });
 
-//  NEEDS TO BE TESTED AND POSSIBLY REWRITE 
 
-// productRouter.patch('/:productId', requireUser, async (req, res, next) => {
-//     try {
-//         const { productId } = req.params;
-//         const { name, description } = req.body;
-//         const originalProduct = await getProductById(productId);
-//         if (!originalProduct) {
-//             next({
-//                 name: 'no Product Error',
-//                 message: 'There is no original Product'
-//             })
-//         }
-//         if (parseInt(originalProduct.id) === parseInt(productId)) {
-//             const updatedProduct = await updatedProduct({ id: productId, name, description });
-//             res.send(updatedProduct)
-//         } else {
-//             next({
-//                 name: 'InvalidUpdate',
-//                 message: 'Update could not be completed'
-//             });
-//         }
-//     } catch (error) {
-//         next(error);
-//     }
-// });
+productRouter.delete(
+    "/:productId",
+    async (req, res, next) => {
+      try {
+        const { productId } = req.params;
+        console.log (req.user)
+        const productDelete = await getProductById(productId);
+       if (req.user.admin === true) {
+          const deleteProducts = await deleteProduct(productId, req.user.id);
+          res.send(deleteProducts);
+        } else {
+          next({ message: "error" });
+        }
+      } catch (error) {
+          console.log(error)
+        next(error);
+      }
+    }
+  );
+  
+
+
+
+
 
 module.exports = productRouter;

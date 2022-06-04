@@ -71,9 +71,6 @@ async function updateCart({ id, isPayFor, name, price }) {
 
   try {
     const fields = {};
-    if (name){
-      fields.name = name
-    }
     if (price){
       fields.price = price
     }
