@@ -1,5 +1,5 @@
-// export { default as Navbar } from './';
-//  export { default as Products } from './';
-//  export { default as Cart } from './';
-//  export { default as Checkout } from '././';
-//  export { default as App } from './';
+export { default as Navbar } from './Navbar/Navbar.jsx';
+ export { default as Products } from './Products/Products.jsx';
+ export { default as Cart } from './Cart/Cart.jsx';
+   export { default as Checkout } from './CheckoutForm/Checkout/Checkout.jsx';
+ 

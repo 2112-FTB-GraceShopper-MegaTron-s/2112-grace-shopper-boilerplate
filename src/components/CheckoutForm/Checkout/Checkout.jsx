@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { CssBaseline, Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
 
-// import { commerce } from '../../../lib/commerce';
+// import { Axios } from '../../../lib/commerce';
 import AddressForm from '../AddressForm';
 import PaymentForm from '../PaymentForm';
 import useStyles from './styles';
+import Axios from 'axios';
 
 const steps = ['Shipping address', 'Payment details'];
 
@@ -23,7 +24,7 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
     if (cart.id) {
       const generateToken = async () => {
         try {
-          const token = await commerce.checkout.generateToken(cart.id, { type: 'cart' });
+          const token = await Axios.checkout.generateToken(cart.id, { type: 'cart' });
 
           setCheckoutToken(token);
         } catch {
@@ -33,7 +34,7 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
 
       generateToken();
     }
-  }, [cart]);
+  }, [cart, activeStep, history]);
 
   const test = (data) => {
     setShippingData(data);

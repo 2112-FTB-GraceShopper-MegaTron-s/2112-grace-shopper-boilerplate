@@ -45,6 +45,8 @@ async function dropTables() {
   // drop all tables, in the correct order
   try {
     await client.query(`  
+      DROP TABLE IF EXISTS cart_products;
+      DROP TABLE IF EXISTS cart_product;
       DROP TABLE IF EXISTS cart_item;
       DROP TABLE IF EXISTS cart;
       DROP TABLE IF EXISTS product;
