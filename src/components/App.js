@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react';
 // getAPIHealth is defined in our axios-services directory index.js
 // you can think of that directory as a collection of api adapters
 // where each adapter fetches specific info from our express server's /api route
-import { getAPIHealth, getProducts } from '../axios-services';
+import { getAPIHealth } from '../axios-services';
 import '../style/App.css';
-import {Products} from '../components';
+import {Products, Login } from '../components';
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState('');
-  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     // follow this pattern inside your useEffect calls:
@@ -28,6 +27,7 @@ const App = () => {
     <div className="app-container">
       <h1>Hello, World!</h1>
       <p>API Status: {APIHealth}</p>
+      <Login />
       <Products />
     </div>
 
