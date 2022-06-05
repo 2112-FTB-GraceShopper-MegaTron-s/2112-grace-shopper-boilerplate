@@ -46,9 +46,10 @@ export async function loginUser({username, password}) {
   }
 }
 
-export async function registerUser({username, password}){
+export async function registerUser({username, password,email}){
   try{
-    const response = await axios.post('/api/users/register',  {username, password})
+    const response = await axios.post('/api/users/register',  {username, password,email})
+    console.log(response);
     localStorage.setItem('token', response.data.token)
     return response;
   }catch(err){

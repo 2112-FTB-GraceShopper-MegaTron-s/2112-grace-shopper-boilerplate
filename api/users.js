@@ -18,7 +18,7 @@ usersRouter.use((req, res, next) => {
 });
 
 usersRouter.post("/register", async (req, res, next) => {
-  const { username, password } = req.body;
+  const { username, password, email } = req.body;
   try {
     if (password.length < 8) {
       throw new Error("Password is too short");
@@ -31,6 +31,7 @@ usersRouter.post("/register", async (req, res, next) => {
     const user = await createUser({
       username,
       password,
+      email
     });
     res.send({ user });
   } catch (error) {
