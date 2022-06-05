@@ -39,7 +39,7 @@
     "react-stripe-elements": "^6.1.2",
     "semantic-ui-react": "^2.1.2"
   },
-  "proxy": "http://localhost:6000",
+  "proxy": "http://localhost:7000",
   "browserslist": {
     "production": [
       ">0.2%",

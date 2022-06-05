@@ -1,5 +1,5 @@
 const client = require("../client");
-
+// creating tables 
 async function createCartItem({productId, cartId, quantity, price}){
   try{
     const { rows : [ cartItem ] } = await client.query(`
@@ -12,6 +12,9 @@ async function createCartItem({productId, cartId, quantity, price}){
     throw error;
   }
 }
+
+
+
 async function getCartItemById(id) {
   try {
     const { rows: [ cartItem ]  } = await client.query(`
@@ -32,6 +35,7 @@ async function addProductToCart({
     cartId,
     quantity,
     price,
+    userId
 }) 
   
   {
@@ -40,9 +44,10 @@ async function addProductToCart({
       return null;
     }
     if (!cartId){
-      return null;
+     const newCart = await createCart({userId,isPayFor, price});
+     cartId = newCart.id
     }
-
+    
     const {
       rows: [cartItem],
     } = await client.query(
@@ -62,7 +67,7 @@ async function addProductToCart({
   }
 }
 
-async function updateCart_Product({ productId, cartId, price, id }) {
+async function updateCartItem({ productId, cartId, price, id }) {
   try {
     const {
       rows: [cartItem],
@@ -92,28 +97,30 @@ async function destroyCartItem(id) {
   }
 }
 
-async function getTotalCartProductPrice(){
-  try{
-    const { rows: [ totalPrice ] } = await client.query(`
-    SELECT price
-    FROM product;
-    RETURNING *;
-    `)
+// async function getTotalCartProductPrice(){
+//   try{
+//     const { rows: [ totalPrice ] } = await client.query(`
+//     SELECT price
+//     FROM product;
+//     RETURNING *;
+//     `)
 
-    const totalCartPrice = 0;
+//     const totalCartPrice = 0;
 
-    totalPrice.map(price => totalCartPrice+=price)
+//     totalPrice.map(price => totalCartPrice+=price)
 
-    return totalCartPrice;
-  }catch(error){
-    throw error;
-  }
-}
+//     return totalCartPrice;
+//   }catch(error){
+//     throw error;
+//   }
+// }
+
+
 
 module.exports = {
   getCartItemById,
   addProductToCart,
-  // updateCartItem,
+  updateCartItem,
   destroyCartItem,
   createCartItem
  
