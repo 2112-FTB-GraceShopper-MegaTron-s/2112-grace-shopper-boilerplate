@@ -12,7 +12,7 @@ cartRouter.use((req, res, next) =>{
 
 cartRouter.get('/', async (req, res, next) => {
     try{
-        const carts = await getAllCarts();
+        const carts = await getAllCarts(req.body);
         res.send(carts);
     }catch (error){
         next (error)

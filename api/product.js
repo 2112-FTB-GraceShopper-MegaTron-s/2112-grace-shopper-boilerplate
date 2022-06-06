@@ -29,7 +29,8 @@ productRouter.post('/', async (req, res, next) => {
 
 productRouter.get('/:productId', async (req, res, next) => {
   try{
-    const singleProduct = await getProductById();
+    const { productId } = req.params;
+    const singleProduct = await getProductById(productId);
     res.send(singleProduct);
   }catch (error){
     next(error)

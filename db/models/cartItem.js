@@ -15,19 +15,40 @@ async function createCartItem({productId, cartId, quantity, price}){
 
 
 
-async function getCartItemById(id) {
-  try {
-    const { rows: [ cartItem ]  } = await client.query(`
-      SELECT *
-      FROM cart_item
-      WHERE id=$1;
-    `, [id]);
 
-    return cartItem;
-  } catch (error) {
-    throw error;
+
+async function getItemsFromCart(cartId){
+  try{
+const { rows: [items] } = await client.query(`
+SELECT cart_item.*, product.name AS "productName"
+FROM cart_item
+JOIN product ON product.id=cart_item."productId"
+WHERE "cartId" = $1;
+
+
+`, [cartId]);
+return items;
+  }catch(error){
+    throw(error);
   }
 }
+
+
+
+
+// async function getCartItemById(id) {
+//   try {
+//     const { rows: [ cartItem ]  } = await client.query(`
+//       SELECT *
+//       FROM cart_item
+//       WHERE id=$1;
+//     `, [id]);
+
+//     return cartItem;
+//   } catch (error) {
+//     throw error;
+//   }
+// }
 
 
 async function addProductToCart({
@@ -118,10 +139,11 @@ async function destroyCartItem(id) {
 
 
 module.exports = {
-  getCartItemById,
+  // getCartItemById,
   addProductToCart,
   updateCartItem,
   destroyCartItem,
-  createCartItem
+  createCartItem,
+  getItemsFromCart
  
 };

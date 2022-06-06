@@ -92,7 +92,7 @@ async function createTables() {
       "isPayFor" BOOLEAN DEFAULT false
     
     );
-    CREATE TABLE cart_item (
+    CREATE TABLE cart_history (
       id SERIAL PRIMARY KEY,
       "productId" INTEGER REFERENCES product(id),
       "cartId" INTEGER REFERENCES cart(id),
@@ -198,7 +198,7 @@ async function populateProductData() {
     console.error("Error Creating Products")
     throw error;
   }
-}
+}//purchestHistoryOfUser
 async function populateCartData () {
   try{
     const cartData = [
@@ -225,7 +225,7 @@ async function populateCartData () {
     throw error;
   }
 }
-
+//populateCartData
 async function populateCartItemData(){
   try{
     const cartItemData = [
