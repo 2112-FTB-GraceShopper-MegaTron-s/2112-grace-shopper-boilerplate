@@ -3,7 +3,7 @@ const cartItemRouter = express.Router();
 const { requireUser } = require('./utils');
 const {  getCartItemById, addProductToCart, updateCartItem, destroyCartItem, getItemsFromCart } = require('../db/models/cartItem');
 const { isUserAdmin } = require('../db');
-const { getAllCarts } = require('../db/models/cart');
+const { getAllCarts, getCartById } = require('../db/models/cart');
 
 
 
@@ -39,19 +39,34 @@ cartItemRouter.post('/', async (req, res, next) => {
 
 
 
-// cartItemRouter.patch('/:cartId', requireUser, async(req, res, next) =>{
-//     const creatorId = req.user.id
-//     const {productId, cartId, price, quantity, } = req.body;
-//     const { cartItemId: id} = req.params;
-//     const cart
-//     try{
-//         const update = await updateCartItem({ productId, cartId, price,quantity, id});
-//         res.send(update);
-// }catch (error){
-//     next(error);
-// }
-// });
+cartItemRouter.patch('/:cartId', requireUser, async(req, res, next) =>{
+    const creatorId = req.user.id;
+    const {productId, cartId, price, quantity } = req.body;
+    const { cartItemId: id} = req.params;
+    const cartItemById = await getCartItemById(id)
+    const cartById = await getCartById(cartItemById.cartId)
+    try{
+        if (cartById.creatorId === creatorId){
+         const update = await updateCartItem(id);
+         res.send(update);
+        }
+        const update = await updateCartItem({ id, productId, cartId, price,quantity,});
+        res.send(update);
+    }
+    else {next ({message: "you are not the creator can't update"})}
 
+}catch ({productId, cartId, price, quantity}){
+    next({productId, cartId, price, quantity});
+})
+
+
+
+// cartItemRouter.patch('/:cartId', requireUser, async(req, res, next) => {
+//     const creatorId =req.user.id;
+//     const {cartItemById: id} = req.params;
+//     const carById = await getCartItemById(id)
+
+// })
 // cartItemRouter.delete('/:cartItemId', requireUser, async(req, res, next) => {
   
 // });
