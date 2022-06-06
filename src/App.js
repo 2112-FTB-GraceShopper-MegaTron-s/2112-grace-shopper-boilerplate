@@ -18,7 +18,7 @@ const App = () => {
 
   const testHealth = async () => {
     const { data } = await getAPIHealth();
-  
+   return data
   }
 
 
@@ -73,9 +73,9 @@ const App = () => {
   };
 
   useEffect(() => {
+    testHealth();
     fetchProducts();
     fetchCart();
-    testHealth();
   }, []);
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);

@@ -48,7 +48,7 @@ export async function retrieve() {
     return cartItem;
   } catch (err) {
     console.error(err);
-    return  "Choose something else, or do not."  ;
+    return  "Item not found"  ;
   }
 }
 
@@ -56,11 +56,11 @@ export async function add() {
   try {
     //is that /add? or /:addItem
     //is the method patch? 
-    const { data: addItem } = await axios.patch('/api/addItem');
+    const { data: addItem } = await axios.patch('/api/addProductTopCart');
     return addItem;
   } catch (err) {
     console.error(err);
-    return  "something helpful"  ;
+    return  "Failed to add.."  ;
   }
 }
 
@@ -72,7 +72,7 @@ export async function update() {
     return updateItem;
   } catch (err) {
     console.error(err);
-    return  "something helpful"  ;
+    return  "Item didn't update"  ;
   }
 }
 
@@ -84,7 +84,7 @@ export async function remove() {
     return removeItem;
   } catch (err) {
     console.error(err);
-    return  "something helpful"  ;
+    return  "Item was not removed"  ;
   }
 }
 
@@ -96,7 +96,7 @@ export async function emptyCart() {
     return emptyCartItem;
   } catch (err) {
     console.error(err);
-    return  "something helpful"  ;
+    return  "Cart can't be emptied"  ;
   }
 }
 
@@ -108,7 +108,7 @@ export async function capture() {
     return captureCart;
   } catch (err) {
     console.error(err);
-    return  "something helpful"  ;
+    return  "We didn't catch that.."  ;
   }
 }
 
@@ -120,7 +120,7 @@ export async function refreshCart() {
     return cartItem;
   } catch (err) {
     console.error(err);
-    return  "something helpful"  ;
+    return  "Cart can't refresh"  ;
   }
 }
 
