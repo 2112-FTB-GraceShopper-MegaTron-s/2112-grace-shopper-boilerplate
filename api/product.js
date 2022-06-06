@@ -20,11 +20,21 @@ productRouter.get('/', async (req, res, next) => {
 });
 productRouter.post('/', async (req, res, next) => {
     try {
-        const newProduct = await createProducts(req.body);
+        const newProduct = await createProducts();
         res.send(newProduct);
     } catch (error) {
         next(error);
     }
+});
+
+productRouter.get('/:productId', async (req, res, next) => {
+  try{
+    const { productId } = req.params;
+    const singleProduct = await getProductById(productId);
+    res.send(singleProduct);
+  }catch (error){
+    next(error)
+  }
 });
 
 

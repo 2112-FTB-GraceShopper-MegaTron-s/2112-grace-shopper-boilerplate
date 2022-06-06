@@ -55,9 +55,6 @@ apiRouter.use("/cart", cartRouter);
 //  const cartItemRouter = require("./cartItem");
 //  apiRouter.use("/cartItem", cartItemRouter);
 
-// const cartRouter = require("./cart");
-// apiRouter.use("/cart", cartRouter);
-
  const productRouter = require("./product");
  apiRouter.use("/product", productRouter);
 
