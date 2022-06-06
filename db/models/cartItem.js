@@ -1,5 +1,5 @@
 const client = require("../client");
-
+// creating tables 
 async function createCartItem({productId, cartId, quantity, price}){
   try{
     const { rows : [ cartItem ] } = await client.query(`
@@ -12,19 +12,43 @@ async function createCartItem({productId, cartId, quantity, price}){
     throw error;
   }
 }
-async function getCartItemById(id) {
-  try {
-    const { rows: [ cartItem ]  } = await client.query(`
-      SELECT *
-      FROM cart_item
-      WHERE id=$1;
-    `, [id]);
 
-    return cartItem;
-  } catch (error) {
-    throw error;
+
+
+
+
+async function getItemsFromCart(cartId){
+  try{
+const { rows: [items] } = await client.query(`
+SELECT cart_item.*, product.name AS "productName"
+FROM cart_item
+JOIN product ON product.id=cart_item."productId"
+WHERE "cartId" = $1;
+
+
+`, [cartId]);
+return items;
+  }catch(error){
+    throw(error);
   }
 }
+
+
+
+
+// async function getCartItemById(id) {
+//   try {
+//     const { rows: [ cartItem ]  } = await client.query(`
+//       SELECT *
+//       FROM cart_item
+//       WHERE id=$1;
+//     `, [id]);
+
+//     return cartItem;
+//   } catch (error) {
+//     throw error;
+//   }
+// }
 
 
 async function addProductToCart({
@@ -32,6 +56,7 @@ async function addProductToCart({
     cartId,
     quantity,
     price,
+    userId
 }) 
   
   {
@@ -40,9 +65,10 @@ async function addProductToCart({
       return null;
     }
     if (!cartId){
-      return null;
+     const newCart = await createCart({userId,isPayFor, price});
+     cartId = newCart.id
     }
-
+    
     const {
       rows: [cartItem],
     } = await client.query(
@@ -62,7 +88,7 @@ async function addProductToCart({
   }
 }
 
-async function updateCart_Product({ productId, cartId, price, id }) {
+async function updateCartItem({ productId, cartId, price, id }) {
   try {
     const {
       rows: [cartItem],
@@ -92,29 +118,32 @@ async function destroyCartItem(id) {
   }
 }
 
-async function getTotalCartProductPrice(){
-  try{
-    const { rows: [ totalPrice ] } = await client.query(`
-    SELECT price
-    FROM product;
-    RETURNING *;
-    `)
+// async function getTotalCartProductPrice(){
+//   try{
+//     const { rows: [ totalPrice ] } = await client.query(`
+//     SELECT price
+//     FROM product;
+//     RETURNING *;
+//     `)
 
-    const totalCartPrice = 0;
+//     const totalCartPrice = 0;
 
-    totalPrice.map(price => totalCartPrice+=price)
+//     totalPrice.map(price => totalCartPrice+=price)
 
-    return totalCartPrice;
-  }catch(error){
-    throw error;
-  }
-}
+//     return totalCartPrice;
+//   }catch(error){
+//     throw error;
+//   }
+// }
+
+
 
 module.exports = {
-  getCartItemById,
+  // getCartItemById,
   addProductToCart,
-  // updateCartItem,
+  updateCartItem,
   destroyCartItem,
-  createCartItem
+  createCartItem,
+  getItemsFromCart
  
 };

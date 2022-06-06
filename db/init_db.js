@@ -45,8 +45,7 @@ async function dropTables() {
   // drop all tables, in the correct order
   try {
     await client.query(`  
-      DROP TABLE IF EXISTS cart_products;
-      DROP TABLE IF EXISTS cart_product;
+  
       DROP TABLE IF EXISTS cart_item;
       DROP TABLE IF EXISTS cart;
       DROP TABLE IF EXISTS product;
@@ -69,11 +68,11 @@ async function createTables() {
     CREATE TABLE users (
       id SERIAL PRIMARY KEY,
       username varchar(255) NOT NULL,
-      address varchar(255) ,
-      email varchar(255) UNIQUE ,
-      city varchar(255) ,
-      state varchar(255) ,
-      zip INTEGER ,
+      address varchar(255) NOT NULL,
+      email varchar(255) UNIQUE NOT NULL ,
+      city varchar(255) NOT NULL ,
+      state varchar(255) NOT NULL ,
+      zip INTEGER NOT NULL,
       admin BOOLEAN DEFAULT false,
       password varchar(255) UNIQUE NOT NULL
     );  
@@ -252,7 +251,7 @@ async function populateProductData() {
     console.error("Error Creating Products")
     throw error;
   }
-}
+}//purchestHistoryOfUser
 async function populateCartData () {
   try{
     const cartData = [
@@ -279,7 +278,7 @@ async function populateCartData () {
     throw error;
   }
 }
-
+//populateCartData
 async function populateCartItemData(){
   try{
     const cartItemData = [

@@ -5,17 +5,17 @@ const { isUserAdmin } = require ("./users")
 
 async function getProductById(id) {
 
-    try {
-      const { rows: [ product ]  } = await client.query(`
-        SELECT *
-        FROM product
-        WHERE id=$1;
-      `, [id]);
-  
-      return product;
-    } catch (error) {
-      throw error;
-    }
+  try {
+    const { rows: [ product ]  } = await client.query(`
+      SELECT *
+      FROM product
+      WHERE id=$1;
+    `, [id]);
+
+    return product;
+  } catch (error) {
+    throw error;
+  }
 }
 
 async function getAllProducts() {
@@ -23,8 +23,7 @@ async function getAllProducts() {
     const { rows: product } = await client.query(`
           SELECT *
           FROM product
-          WHERE active = true
-          ;
+          WHERE active = true;
           
         `);
 

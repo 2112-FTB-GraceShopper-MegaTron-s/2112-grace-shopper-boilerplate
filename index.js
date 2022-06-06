@@ -31,7 +31,7 @@ server.use((req, res, next) => {
 const { client } = require('./db');
 
 // connect to the server
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 7000;
 
 // define a server handle to close open tcp connection after unit tests have run
 const handle = server.listen(PORT, async () => {
