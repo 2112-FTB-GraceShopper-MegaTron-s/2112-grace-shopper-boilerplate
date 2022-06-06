@@ -17,6 +17,16 @@ export async function getUsers() {
   }
 }
 
+export async function registerUser({username, password, email}){
+  try{
+    const response = await axios.post('/api/users/register',  {username, password,email})
+    console.log(response);
+    localStorage.setItem('token', response.data.token)
+    return response;
+  }catch(err){
+    console.error(err)
+  }
+}
 
 export async function getAPIHealth() {
   try {
