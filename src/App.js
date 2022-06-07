@@ -2,12 +2,12 @@
 // // you can think of that directory as a collection of api adapters
 // // where each adapter fetches specific info from our express server's /api route
 
-import { getAPIHealth, getAllProducts, retrieve, add, update, remove, emptyCart, capture, refreshCart, registerUser } from './axios-services';
+import { getAPIHealth, getAllProducts, retrieve, add, update, remove, emptyCart, capture, refreshCart, registerUser, loginUser } from './axios-services';
  import './style/App.css'
 import React, { useState, useEffect } from 'react';
 import { CssBaseline } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Navbar, Products, Checkout, Cart, Register} from './components';
+import { Navbar, Products, Checkout, Cart, Register, Login } from './components';
 
 const App = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -87,6 +87,9 @@ const App = () => {
         <Switch>
           <Route path="/register">
             <Register registerUser={registerUser} />
+          </Route>
+          <Route path="/login">
+            <Login loginUser = {loginUser}/>
           </Route>
           <Route exact path="/">
             <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
