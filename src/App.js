@@ -81,11 +81,11 @@ const App = () => {
 
   return (
     <Router>
-      <div style={{ display: 'flex' }}>
+      <div >
         <CssBaseline />
         <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
         <Switch>
-          <Route path="/register">
+          <Route exact path="/register">
             <Register registerUser={registerUser} />
           </Route>
           <Route exact path="/">

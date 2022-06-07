@@ -31,7 +31,7 @@ const Register = (props) => {
         setEmail (event.target.value)
     }
     return(
-        <div>
+        <div className='navbarStyle'>
         <form onSubmit={handleSubmit}>
             <input placeholder = "Register username" value = {userName} type = 'text' onChange={updateUserName} />
             <input placeholder = "Register password" value = {password} type = 'password' onChange={updatePassword}/>

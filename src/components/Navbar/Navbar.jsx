@@ -3,7 +3,7 @@ import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography } from '
 import { ShoppingCart } from '@material-ui/icons';
 import AccountCircleTwoToneIcon from '@material-ui/icons/AccountCircleTwoTone';import { Link, useLocation } from 'react-router-dom';
 import useStyles from './styles';
-import Register from '../UserData/Register';
+
 
 const Navbar = ({ totalItems }) => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -40,7 +40,7 @@ const Navbar = ({ totalItems }) => {
 
   return (
     <>
-      <AppBar position="fixed" className={classes.appBar} color="inherit">
+      <AppBar className={classes.appBar} color="inherit">
         <Toolbar>
           <Typography component={Link} to="/" variant="h6" className={classes.title} color="inherit">
             {/* <img src={logo} alt="commerce.js" height="25px" className={classes.image} /> Commerce.js */}
