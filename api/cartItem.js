@@ -47,17 +47,14 @@ cartItemRouter.patch('/:cartId', requireUser, async(req, res, next) =>{
     const cartById = await getCartById(cartItemById.cartId)
     try{
         if (cartById.creatorId === creatorId){
-         const update = await updateCartItem(id);
-         res.send(update);
-        }
         const update = await updateCartItem({ id, productId, cartId, price,quantity,});
         res.send(update);
     }
     else {next ({message: "you are not the creator can't update"})}
 
-}catch ({productId, cartId, price, quantity}){
-    next({productId, cartId, price, quantity});
-})
+}catch (error){
+    next(error);
+}})
 
 
 
