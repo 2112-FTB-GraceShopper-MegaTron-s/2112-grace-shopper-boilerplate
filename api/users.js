@@ -5,7 +5,6 @@ const JWT_SECRET = process.env.JWT_SECRET || "removeLater"
 const {
   createUser,
   getUser,
-  getCartByUser,
   getUserByUsername,
   
 } = require("../db");

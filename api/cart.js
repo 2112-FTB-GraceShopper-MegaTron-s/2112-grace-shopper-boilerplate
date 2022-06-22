@@ -1,8 +1,7 @@
 const express = require("express");
 const cartRouter = express.Router();
-// const { requireUser } = requireUser('./utils');
 const { getCartById, getAllCarts, createCart, updateCart, getTotalCartItemPrice, getCartsByUser } = require('../db/models/cart');
-const productRouter = require("./product");
+
 
 cartRouter.use((req, res, next) =>{
     console.log("A request is being made to cart");
