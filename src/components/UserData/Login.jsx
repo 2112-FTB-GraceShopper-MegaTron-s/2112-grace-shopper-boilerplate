@@ -1,8 +1,8 @@
 //import useStyles from './styles';
 import React, { useState, useEffect } from 'react';
-import {loginUser} from '../axios-services'
 
-const Login = () => {
+const Login = (props) => {
+    const {loginUser} = props;
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
@@ -28,7 +28,7 @@ const Login = () => {
     }
     return(
 
-        <div>
+        <div className = "navbarStyle" >
         <form onSubmit={handleSubmit}>
             <input placeholder = "Login username" value = {userName} type = 'text' onChange={updateUserName} />
             <input placeholder = "Login password" value = {password} type = 'password' onChange={updatePassword}/>
