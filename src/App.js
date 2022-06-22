@@ -91,6 +91,9 @@ const App = () => {
           <Route path="/login">
             <Login loginUser = {loginUser}/>
           </Route>
+          <Route path="/register">
+            <Login registerUser = {registerUser}/>
+          </Route>
           <Route exact path="/">
             <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
           </Route>
