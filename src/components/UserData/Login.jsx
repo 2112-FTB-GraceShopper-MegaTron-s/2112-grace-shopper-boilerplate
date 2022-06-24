@@ -1,5 +1,7 @@
 //import useStyles from './styles';
 import React, { useState, useEffect } from 'react';
+import { registerUser } from '../../axios-services';
+
 
 const Login = (props) => {
     const {loginUser} = props;
@@ -35,6 +37,10 @@ const Login = (props) => {
             <button>Login</button>
         </form>
 
+        {/* <Link to="/Register" className="btn btn-primary">Sign up</Link> */}
+
+            
+ 
         </div>
 
 
