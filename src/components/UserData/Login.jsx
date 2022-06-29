@@ -1,5 +1,7 @@
 //import useStyles from './styles';
 import React, { useState, useEffect } from 'react';
+import Register from '../UserData/Register';
+import {Link} from 'react-router-dom';
 
 const Login = (props) => {
     const {loginUser} = props;
@@ -34,7 +36,7 @@ const Login = (props) => {
             <input placeholder = "Login password" value = {password} type = 'password' onChange={updatePassword}/>
             <button>Login</button>
         </form>
-
+    <Link to = '/register'>Register Here </Link>
         </div>
 
 
