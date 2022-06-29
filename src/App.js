@@ -85,9 +85,7 @@ const App = () => {
         <CssBaseline />
         <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
         <Switch>
-          <Route path="/login">
-            <Login loginUser={loginUser} />
-          </Route>
+    
           <Route path="/login">
             <Login loginUser = {loginUser}/>
           </Route>

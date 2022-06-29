@@ -1,7 +1,14 @@
 //import useStyles from './styles';
 import React, { useState, useEffect } from 'react';
 import { registerUser } from '../../axios-services';
-
+import Register from './Register';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useHistory,
+  } from "react-router-dom";
 
 const Login = (props) => {
     const {loginUser} = props;
@@ -31,18 +38,23 @@ const Login = (props) => {
     return(
 
         <div className = "navbarStyle" >
-        <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <input placeholder = "Login username" value = {userName} type = 'text' onChange={updateUserName} />
             <input placeholder = "Login password" value = {password} type = 'password' onChange={updatePassword}/>
             <button>Login</button>
-        </form>
-
-        {/* <Link to="/Register" className="btn btn-primary">Sign up</Link> */}
-
             
- 
-        </div>
+            <button>
+               <Link to="/register">Signup</Link>
+            </button>
+          </form>
 
+          
+          
+       
+
+        </div>
+  
+    
 
 
 )}

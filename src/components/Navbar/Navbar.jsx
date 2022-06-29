@@ -19,7 +19,7 @@ const Navbar = ({ totalItems }) => {
   const renderMobileMenu = (
     <Menu anchorEl={mobileMoreAnchorEl} anchorOrigin={{ vertical: 'top', horizontal: 'right' }} id={mobileMenuId} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right' }} open={isMobileMenuOpen} onClose={handleMobileMenuClose}>
       <MenuItem>
-      <Link to='/register'><AccountCircleTwoToneIcon/>Register</Link>
+      <Link to='/login'><AccountCircleTwoToneIcon/>Login</Link>
         <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
           <Badge badgeContent={totalItems} color="secondary">
             <ShoppingCart />
@@ -48,7 +48,7 @@ const Navbar = ({ totalItems }) => {
           <div className={classes.grow} />
           {location.pathname === '/' && (
           <div className={classes.button}>
-            <Link to='/register'><AccountCircleTwoToneIcon/></Link>
+            <Link to='/login'><AccountCircleTwoToneIcon/></Link>
             <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
               <Badge badgeContent={totalItems} color="secondary">
                 <ShoppingCart />
