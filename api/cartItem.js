@@ -54,7 +54,21 @@ cartItemRouter.patch('/:cartId', requireUser, async(req, res, next) =>{
 
 }catch (error){
     next(error);
-    }})
+}})
+
+
+
+// cartItemRouter.patch('/:cartId', requireUser, async(req, res, next) => {
+//     const creatorId =req.user.id;
+//     const {cartItemById: id} = req.params;
+//     const carById = await getCartItemById(id)
+
+// })
+// cartItemRouter.delete('/:cartItemId', requireUser, async(req, res, next) => {
+  
+// });
+
+
 
 
 module.exports = cartItemRouter;

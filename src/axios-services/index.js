@@ -67,7 +67,7 @@ export async function add() {
   try {
     //is that /add? or /:addItem
     //is the method patch? 
-    const { data: addItem } = await axios.patch('/api/addProductTopCart');
+    const { data: addItem } = await axios.patch('/api/cartItem');
     return addItem;
   } catch (err) {
     console.error(err);

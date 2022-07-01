@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 // import useStyles from './styles';
+
 
 const Register = (props) => {
     const { registerUser } = props;
@@ -38,6 +40,8 @@ const Register = (props) => {
             <input placeholder = "Register email" value = {email} type = 'text' onChange={updateEmail}/>            
             <button>Register</button>
         </form>
+        <Link to='/'>Back To Products</Link >
         </div>
+
 )}
 export default Register;
